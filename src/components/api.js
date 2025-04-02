@@ -37,9 +37,14 @@ export const updateArticleVotes = (article_id) => {
 export const downVoteArticleVotes = (article_id) => {
   return api.patch(`/articles/${article_id}`, { inc_votes: -1 });
 };
+
 export const postComment = (article_id, messageBody) => {
   return api.post(`/articles/${article_id}/comments`, {
     username: "grumpy19",
     body: messageBody,
   });
+};
+
+export const deleteComment = (comment_id) => {
+  return api.delete(`/comments/${comment_id}`);
 };
