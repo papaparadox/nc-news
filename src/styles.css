@@ -57,3 +57,24 @@ a {
 #vote-error {
   color: red;
 }
+
+#successful-message {
+  color: green;
+}
+
+label {
+  display: block;
+}
+
+#submit-button {
+  display: block;
+}
+
+textarea {
+  height: 70px;
+  width: 370px;
+}
+
+#warning-message {
+  color: red;
+}
