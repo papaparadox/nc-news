@@ -48,3 +48,15 @@ export const postComment = (article_id, messageBody) => {
 export const deleteComment = (comment_id) => {
   return api.delete(`/comments/${comment_id}`);
 };
+
+export const getTopics = () => {
+  return api.get("/topics").then(({ data }) => {
+    return data;
+  });
+};
+
+export const getArticlesByTopic = (topic_name) => {
+  return api.get(`/articles?topic=${topic_name}`).then(({ data }) => {
+    return data;
+  });
+};

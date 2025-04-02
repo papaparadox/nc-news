@@ -1,15 +1,23 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ArticleCard from "./ArticleCard";
-import { getArticles } from "../api";
+import { getArticles, getArticlesByTopic } from "../api";
+import { useParams } from "react-router";
 
 export default function ListOfArticles() {
   const [articles, SetArticles] = useState([]);
+  const { topic_name } = useParams();
 
   useEffect(() => {
-    getArticles().then(({ articles }) => {
-      SetArticles(articles);
-    });
+    if (!topic_name) {
+      getArticles().then(({ articles }) => {
+        SetArticles(articles);
+      });
+    } else {
+      getArticlesByTopic(topic_name).then(({ articles }) => {
+        SetArticles(articles.filter((article) => article.topic === topic_name));
+      });
+    }
   }, []);
 
   return (
