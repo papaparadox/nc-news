@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
-import { downVoteCommentVotes, updateCommentVotes } from "../api";
+import {
+  deleteComment,
+  downVoteCommentVotes,
+  updateCommentVotes,
+} from "../api";
 
-export default function CommentCard({ comment }) {
+export default function CommentCard({ comment, comments, setComments }) {
   const date = new Date(comment.created_at);
   const [currentVotes, setCurrentVotes] = useState(0);
   const [error, setError] = useState(null);
   const [isVoteClicked, setIsVoteClicked] = useState(false);
   const [isDownVoteClicked, setIsDownVoteClicked] = useState(false);
+  const [isDeleteClicked, setIsDeleteClicked] = useState(false);
   const [successVote, setSuccessVote] = useState(null);
-
   function handleVote() {
     if (!isVoteClicked) {
       updateCommentVotes(comment.comment_id)
@@ -63,6 +67,22 @@ export default function CommentCard({ comment }) {
       setSuccessVote("Downvote was retrieved!");
     }
   }
+
+  function handleDelete() {
+    setIsDeleteClicked(true);
+    deleteComment(comment.comment_id)
+      .then(() => {
+        setComments(
+          comments.filter(
+            (filterComment) => comment.comment_id !== filterComment.comment_id
+          )
+        );
+      })
+      .finally(() => {
+        setIsDeleteClicked(false);
+      });
+  }
+
   return (
     <div className='comments'>
       <h4>{comment.author} writes:</h4>
@@ -71,6 +91,11 @@ export default function CommentCard({ comment }) {
       <p>Votes: {comment.votes + currentVotes}</p>
       <button onClick={handleVote}>Vote</button>
       <button onClick={handleDownVote}>DownVote</button>
+      {comment.author === "grumpy19" ? (
+        <button onClick={handleDelete} disabled={isDeleteClicked}>
+          Delete
+        </button>
+      ) : null}
       {successVote && <p>{successVote}</p>}
       {error && <p id='vote-error'>{error}</p>}
     </div>

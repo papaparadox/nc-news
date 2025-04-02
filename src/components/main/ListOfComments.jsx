@@ -54,7 +54,14 @@ export default function ListOfComments({ article_id }) {
       {successComment && <p id='successful-message'>{successComment}</p>}
       {warning && <p id='warning-message'>{warning}</p>}
       {comments.map((comment) => {
-        return <CommentCard key={comment.comment_id} comment={comment} />;
+        return (
+          <CommentCard
+            key={comment.comment_id}
+            comment={comment}
+            setComments={setComments}
+            comments={comments}
+          />
+        );
       })}
     </section>
   );
