@@ -11,7 +11,7 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path='/' element={<ListOfArticles />} />
+        <Route path='/' element={<ListOfArticles key={location.pathname} />} />
         <Route path='/articles/:article_id' element={<ArticleById />} />
         <Route path='/topics' element={<ListOfTopics />} />
         <Route path='/:topic_name/articles' element={<ListOfArticles />} />
