@@ -56,7 +56,9 @@ export default function ListOfArticles() {
         <option value='votes'>Most Votes</option>
         <option value='comment_count'>Most Comments</option>
       </select>
-      <button onClick={handleOrderChange}>{order}</button>
+      <button onClick={handleOrderChange}>
+        {order === "asc" ? "Descending" : "Ascending"}
+      </button>
       <section className='articles-section'>
         {articles.map((article) => {
           return <ArticleCard key={article.title} article={article} />;
