@@ -7,7 +7,6 @@ export default function ListOfTopics() {
 
   useEffect(() => {
     getTopics().then(({ topics }) => {
-      console.log(topics);
       setTopics(topics);
     });
   }, []);
