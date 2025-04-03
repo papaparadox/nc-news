@@ -14,13 +14,14 @@ export default function CommentCard({ comment, comments, setComments }) {
   const [isDeleteClicked, setIsDeleteClicked] = useState(false);
   const [successVote, setSuccessVote] = useState(null);
   function handleVote() {
-    if (!isVoteClicked) {
+    if (!isVoteClicked && !error) {
       updateCommentVotes(comment.comment_id)
         .then(() => {
           setError(null);
         })
         .catch(() => {
           setCurrentVotes((prev) => prev - 1);
+          setSuccessVote("");
           setError("Failed to vote. Try again!");
         });
       setCurrentVotes(currentVotes + 1);
@@ -33,21 +34,23 @@ export default function CommentCard({ comment, comments, setComments }) {
         })
         .catch(() => {
           setCurrentVotes((prev) => prev + 1);
+          setSuccessVote("");
           setError("Failed to vote. Try again!");
         });
       setCurrentVotes(currentVotes - 1);
       setIsVoteClicked(false);
-      setSuccessVote("Upvote was retrieved!");
+      error ? setSuccessVote("") : setSuccessVote("Upvote was retrieved!");
     }
   }
   function handleDownVote() {
-    if (!isDownVoteClicked) {
+    if (!isDownVoteClicked && !error) {
       downVoteCommentVotes(comment.comment_id)
         .then(() => {
           setError(null);
         })
         .catch(() => {
           setCurrentVotes((prev) => prev + 1);
+          setSuccessVote("");
           setError("Failed to vote. Try again!");
         });
       setCurrentVotes(currentVotes - 1);
@@ -60,11 +63,12 @@ export default function CommentCard({ comment, comments, setComments }) {
         })
         .catch(() => {
           setCurrentVotes((prev) => prev - 1);
+          setSuccessVote("");
           setError("Failed to vote. Try again!");
         });
       setCurrentVotes(currentVotes + 1);
       setIsDownVoteClicked(false);
-      setSuccessVote("Downvote was retrieved!");
+      error ? setSuccessVote("") : setSuccessVote("Downvote was retrieved!");
     }
   }
 

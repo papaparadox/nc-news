@@ -20,7 +20,7 @@ export default function ArticleById() {
   const [pathError, setPathError] = useState(null);
 
   function handleVote() {
-    if (!isVoteClicked) {
+    if (!isVoteClicked && !error) {
       updateArticleVotes(article_id)
         .then(() => {
           setError(null);
@@ -43,17 +43,18 @@ export default function ArticleById() {
         });
       setCurrentArticleVotes(currentArticleVotes - 1);
       setIsVoteClicked(false);
-      setSuccessVote("Vote was retrieved!");
+      error ? setSuccessVote("") : setSuccessVote("Vote was retrieved!");
     }
   }
   function handleDownVote() {
-    if (!isDownVoteClicked) {
+    if (!isDownVoteClicked && !error) {
       downVoteArticleVotes(article_id)
         .then(() => {
           setError(null);
         })
         .catch(() => {
           setCurrentArticleVotes((prev) => prev + 1);
+          setSuccessVote("");
           setError("Failed to vote. Try again!");
         });
       setCurrentArticleVotes(currentArticleVotes - 1);
@@ -66,11 +67,12 @@ export default function ArticleById() {
         })
         .catch(() => {
           setCurrentArticleVotes((prev) => prev - 1);
+          setSuccessVote("");
           setError("Failed to vote. Try again!");
         });
       setCurrentArticleVotes(currentArticleVotes + 1);
       setIsDownVoteClicked(false);
-      setSuccessVote("Downvote was retrieved!");
+      error ? setSuccessVote("") : setSuccessVote("Downvote was retrieved!");
     }
   }
 
@@ -96,6 +98,7 @@ export default function ArticleById() {
       <button onClick={handleVote}>Vote</button>
       <button onClick={handleDownVote}>DownVote</button>
       {successVote && <p>{successVote}</p>}
+      {error && <p id='vote-error'>{error}</p>}
       <p>
         Post made by <span id='author'>{articleWithID.author}</span>
       </p>

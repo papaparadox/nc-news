@@ -4,12 +4,13 @@
   gap: 20px;
   padding: 20px;
   text-align: center;
+  overflow: hidden;
 }
 #article-card-image {
   margin-left: auto;
   margin-right: auto;
   width: 100px;
-  height: 100px;
+  height: auto;
 }
 
 .articles {
