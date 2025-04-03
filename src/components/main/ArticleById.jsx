@@ -6,6 +6,7 @@ import {
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import ListOfComments from "./ListOfComments";
+import ErrorComponent from "./ErrorComponent";
 
 export default function ArticleById() {
   const [articleWithID, setArticleWithID] = useState([]);
@@ -16,6 +17,7 @@ export default function ArticleById() {
   const { article_id } = useParams();
 
   const [error, setError] = useState(null);
+  const [pathError, setPathError] = useState(null);
 
   function handleVote() {
     if (!isVoteClicked) {
@@ -73,11 +75,18 @@ export default function ArticleById() {
   }
 
   useEffect(() => {
-    getArticleByID(article_id).then(({ article }) => {
-      setArticleWithID(article);
-    });
+    getArticleByID(article_id)
+      .then(({ article }) => {
+        setArticleWithID(article);
+      })
+      .catch((err) => {
+        setPathError(err);
+      });
   }, []);
 
+  if (pathError) {
+    return <ErrorComponent message={pathError.message} />;
+  }
   return (
     <div>
       <h1>{articleWithID.title}</h1>

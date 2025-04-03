@@ -8,11 +8,16 @@ export default function ListOfComments({ article_id }) {
   const [successComment, setSuccessComment] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [warning, setWarning] = useState(null);
+  const [pathError, setPathError] = useState(null);
 
   useEffect(() => {
-    getComments(article_id).then(({ comment }) => {
-      setComments(comment);
-    });
+    getComments(article_id)
+      .then(({ comment }) => {
+        setComments(comment);
+      })
+      .catch((err) => {
+        setPathError(err);
+      });
   }, []);
 
   function handleChange(event) {
@@ -35,6 +40,10 @@ export default function ListOfComments({ article_id }) {
       setMessageBody("");
       setIsLoading(false);
     });
+  }
+
+  if (pathError) {
+    return <ErrorComponent message={pathError.message} />;
   }
 
   return (

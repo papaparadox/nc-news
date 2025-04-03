@@ -8,19 +8,30 @@ export default function ListOfArticles() {
   const [articles, SetArticles] = useState([]);
   const { topic_name } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [pathError, setPathError] = useState(null);
 
   const sortBy = searchParams.get("sort_by") || "created_at";
   const order = searchParams.get("order") || "desc";
 
   useEffect(() => {
     if (!topic_name) {
-      getArticles(sortBy, order).then(({ articles }) => {
-        SetArticles(articles);
-      });
+      getArticles(sortBy, order)
+        .then(({ articles }) => {
+          SetArticles(articles);
+        })
+        .catch((err) => {
+          setPathError(err);
+        });
     } else {
-      getArticlesByTopic(topic_name, sortBy, order).then(({ articles }) => {
-        SetArticles(articles.filter((article) => article.topic === topic_name));
-      });
+      getArticlesByTopic(topic_name, sortBy, order)
+        .then(({ articles }) => {
+          SetArticles(
+            articles.filter((article) => article.topic === topic_name)
+          );
+        })
+        .catch((err) => {
+          setPathError(err);
+        });
     }
   }, [sortBy, order]);
 
@@ -33,8 +44,13 @@ export default function ListOfArticles() {
     const newOrder = order === "asc" ? "desc" : "asc";
     setSearchParams({ sort_by: sortBy, order: newOrder });
   }
+
+  if (pathError) {
+    return <ErrorComponent message={pathError.message} />;
+  }
+
   return (
-    <>
+    <div className='select-sorting'>
       <select value={sortBy} onChange={handleSortChange}>
         <option value='created_at'>Newest</option>
         <option value='votes'>Most Votes</option>
@@ -46,6 +62,6 @@ export default function ListOfArticles() {
           return <ArticleCard key={article.title} article={article} />;
         })}
       </section>
-    </>
+    </div>
   );
 }
