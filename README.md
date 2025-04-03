@@ -1,12 +1,62 @@
-# React + Vite
+# 📰 NC News - Full Stack News App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Live Demo
 
-Currently, two official plugins are available:
+[View the Deployed App](https://ncnewsfrontend.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📡 Back-End Repository
 
-## Expanding the ESLint configuration
+[NC News API](https://github.com/papaparadox/Seeding-NCNews)
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📌 About the Project
+
+NC News is a full-stack web application that allows users to browse, vote, and comment on articles. It fetches data from a custom-built RESTful API and enables interactive features such as sorting articles and filtering by topics.
+
+## ✨ Features
+
+- View a list of articles with sorting options (newest/oldest, votes, etc.)
+- Filter articles by topic
+- Vote on articles and comments
+- Post comments on articles
+- Responsive design for desktop and mobile
+
+## 🛠️ Tech Stack
+
+- **Front-End:** React, React Router, Axios
+- **Back-End:** Node.js, Express.js, PostgreSQL
+- **Hosting:** Netlify (Front-End), Render (Back-End)
+
+## 🖥️ Minimum Requirements
+
+Ensure you have **Node.js v16+** installed. Check your version with:
+
+```sh
+node --version
+```
+
+## 🛠️ Running the Project Locally
+
+### 1️⃣ Clone the Repository
+
+```sh
+git clone https://github.com/papaparadox/nc-news.git
+cd nc-news
+```
+
+### 2️⃣ Install Dependencies
+
+```sh
+npm install
+```
+
+### 3️⃣ Start the Development Server
+
+```sh
+npm run dev
+```
+
+Your app should now be running at **http://localhost:5173/** (if using Vite).
+
+## 📚 Additional Information
+
+This portfolio project was created as part of a **Digital Skills Bootcamp in Software Engineering** provided by [Northcoders](https://northcoders.com/).
