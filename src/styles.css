@@ -19,12 +19,6 @@
   height: 160px;
 }
 
-.navbar {
-  display: flex;
-  list-style-type: none;
-  padding: 0;
-}
-
 a {
   height: 200px;
 }
@@ -35,7 +29,8 @@ a {
 }
 
 .header-nav {
-  width: 400px;
+  width: auto;
+  background-color: #333333;
 }
 
 #author {
@@ -89,4 +84,60 @@ textarea {
   gap: 20px;
   padding: 20px;
   text-align: center;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  background-color: antiquewhite;
+  color: black;
+}
+
+.error-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: red;
+  margin-bottom: 10px;
+}
+
+.error-message {
+  font-size: 1.2rem;
+  max-width: 500px;
+  margin-bottom: 20px;
+}
+
+.navbar-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+li {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

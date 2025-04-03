@@ -4,10 +4,12 @@ const api = axios.create({
   baseURL: "https://seeding-ncnews.onrender.com/api",
 });
 
-export const getArticles = () => {
-  return api.get("/articles").then(({ data }) => {
-    return data;
-  });
+export const getArticles = (sortBy, order) => {
+  return api
+    .get("/articles", { params: { sort_by: sortBy, order } })
+    .then(({ data }) => {
+      return data;
+    });
 };
 
 export const getArticleByID = (article_id) => {
@@ -55,8 +57,12 @@ export const getTopics = () => {
   });
 };
 
-export const getArticlesByTopic = (topic_name) => {
-  return api.get(`/articles?topic=${topic_name}`).then(({ data }) => {
-    return data;
-  });
+export const getArticlesByTopic = (topic_name, sortBy, order) => {
+  return api
+    .get(`/articles?topic=${topic_name}`, {
+      params: { sort_by: sortBy, order },
+    })
+    .then(({ data }) => {
+      return data;
+    });
 };

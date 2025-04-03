@@ -4,6 +4,7 @@ import "./styles.css";
 import ListOfArticles from "./components/main/ListOfArticles";
 import ListOfTopics from "./components/main/ListOfTopics";
 import ArticleById from "./components/main/ArticleById";
+import ErrorPage from "./components/main/ErrorPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/articles/:article_id' element={<ArticleById />} />
         <Route path='/topics' element={<ListOfTopics />} />
         <Route path='/:topic_name/articles' element={<ListOfArticles />} />
+        <Route path='*' element={<ErrorPage />} />
       </Routes>
     </>
   );

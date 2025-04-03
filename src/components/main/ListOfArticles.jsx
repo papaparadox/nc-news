@@ -1,30 +1,67 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { useParams } from "react-router";
+import { useSearchParams } from "react-router";
 import ArticleCard from "./ArticleCard";
 import { getArticles, getArticlesByTopic } from "../api";
-import { useParams } from "react-router";
 
 export default function ListOfArticles() {
   const [articles, SetArticles] = useState([]);
   const { topic_name } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [pathError, setPathError] = useState(null);
+
+  const sortBy = searchParams.get("sort_by") || "created_at";
+  const order = searchParams.get("order") || "desc";
 
   useEffect(() => {
     if (!topic_name) {
-      getArticles().then(({ articles }) => {
-        SetArticles(articles);
-      });
+      getArticles(sortBy, order)
+        .then(({ articles }) => {
+          SetArticles(articles);
+        })
+        .catch((err) => {
+          setPathError(err);
+        });
     } else {
-      getArticlesByTopic(topic_name).then(({ articles }) => {
-        SetArticles(articles.filter((article) => article.topic === topic_name));
-      });
+      getArticlesByTopic(topic_name, sortBy, order)
+        .then(({ articles }) => {
+          SetArticles(
+            articles.filter((article) => article.topic === topic_name)
+          );
+        })
+        .catch((err) => {
+          setPathError(err);
+        });
     }
-  }, []);
+  }, [sortBy, order]);
+
+  function handleSortChange(event) {
+    const newSort = event.target.value;
+    setSearchParams({ sort_by: newSort, order });
+  }
+
+  function handleOrderChange() {
+    const newOrder = order === "asc" ? "desc" : "asc";
+    setSearchParams({ sort_by: sortBy, order: newOrder });
+  }
+
+  if (pathError) {
+    return <ErrorComponent message={pathError.message} />;
+  }
 
   return (
-    <section className='articles-section'>
-      {articles.map((article) => {
-        return <ArticleCard key={article.title} article={article} />;
-      })}
-    </section>
+    <div className='select-sorting'>
+      <select value={sortBy} onChange={handleSortChange}>
+        <option value='created_at'>Newest</option>
+        <option value='votes'>Most Votes</option>
+        <option value='comment_count'>Most Comments</option>
+      </select>
+      <button onClick={handleOrderChange}>{order}</button>
+      <section className='articles-section'>
+        {articles.map((article) => {
+          return <ArticleCard key={article.title} article={article} />;
+        })}
+      </section>
+    </div>
   );
 }
