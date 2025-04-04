@@ -105,7 +105,11 @@ export default function CommentCard({ comment, comments, setComments }) {
       </button>
       {comment.author === "grumpy19" ? (
         <>
-          <button onClick={handleDelete} disabled={isDeleteClicked}>
+          <button
+            onClick={handleDelete}
+            disabled={isDeleteClicked}
+            className='vote-button'
+          >
             Delete
           </button>
           {deleteError && <p id='error-message'>Failed to delete</p>}

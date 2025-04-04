@@ -17,7 +17,8 @@
   padding: 15px;
   border: 3px solid;
   background-color: antiquewhite;
-  height: 160px;
+  height: 100%;
+  max-height: 160px;
 }
 
 a {
@@ -26,9 +27,16 @@ a {
   text-decoration: none;
 }
 
+h3 {
+  font-size: 1rem;
+  word-wrap: break-word;
+  text-align: center;
+}
+
 #article-id-image {
-  height: 500px;
-  width: 1000px;
+  height: auto;
+  width: auto;
+  max-width: 628px;
 }
 
 .header-nav {
@@ -81,7 +89,8 @@ label {
 
 textarea {
   height: 70px;
-  width: 370px;
+  width: 90%;
+  max-width: 370px;
   border-radius: 10px;
   margin-left: 10px;
   border: 2px solid;
@@ -234,4 +243,10 @@ li {
   margin-bottom: 20px;
   border-radius: 8px;
   background-color: antiquewhite;
+}
+
+@media (max-width: 768px) {
+  .articles-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
