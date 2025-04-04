@@ -176,14 +176,24 @@ li {
 }
 
 .select-sorting {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  height: 90%;
+  width: 90%;
   gap: 10px;
   margin-bottom: 20px;
   padding: 10px;
   background-color: #f4f4f4;
   border-radius: 5px;
+}
+
+.header-nav,
+.select-sorting {
+  width: 100%;
+  max-width: 2000px;
+  margin: 0 auto;
 }
 
 .select-sorting select {
@@ -248,5 +258,10 @@ li {
 @media (max-width: 768px) {
   .articles-section {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .articles-section {
+    grid-template-columns: 1fr;
   }
 }
