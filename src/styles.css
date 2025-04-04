@@ -22,6 +22,7 @@
 
 a {
   height: 200px;
+  color: black;
 }
 
 #article-id-image {
@@ -50,7 +51,7 @@ a {
   padding: 30px;
 }
 
-#vote-error {
+#error-message {
   color: red;
 }
 

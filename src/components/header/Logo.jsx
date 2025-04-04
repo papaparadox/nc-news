@@ -4,7 +4,7 @@ export default function Logo() {
   return (
     <div className='logo'>
       <Link to='/'>
-        <img src='../planning/Screenshot from 2025-03-31 14-14-18.png' />
+        <img src='../planning/Logo.png' />
       </Link>
     </div>
   );

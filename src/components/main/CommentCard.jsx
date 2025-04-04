@@ -9,6 +9,7 @@ export default function CommentCard({ comment, comments, setComments }) {
   const date = new Date(comment.created_at);
   const [currentVotes, setCurrentVotes] = useState(0);
   const [error, setError] = useState(null);
+  const [deleteError, setDeleteError] = useState(null);
   const [isVoteClicked, setIsVoteClicked] = useState(false);
   const [isDownVoteClicked, setIsDownVoteClicked] = useState(false);
   const [isDeleteClicked, setIsDeleteClicked] = useState(false);
@@ -82,6 +83,9 @@ export default function CommentCard({ comment, comments, setComments }) {
           )
         );
       })
+      .catch(() => {
+        setDeleteError("Failed to vote");
+      })
       .finally(() => {
         setIsDeleteClicked(false);
       });
@@ -96,12 +100,15 @@ export default function CommentCard({ comment, comments, setComments }) {
       <button onClick={handleVote}>Vote</button>
       <button onClick={handleDownVote}>DownVote</button>
       {comment.author === "grumpy19" ? (
-        <button onClick={handleDelete} disabled={isDeleteClicked}>
-          Delete
-        </button>
+        <>
+          <button onClick={handleDelete} disabled={isDeleteClicked}>
+            Delete
+          </button>
+          {deleteError && <p id='error-message'>Failed to delete</p>}
+        </>
       ) : null}
       {successVote && <p>{successVote}</p>}
-      {error && <p id='vote-error'>{error}</p>}
+      {error && <p id='error-message'>{error}</p>}
     </div>
   );
 }

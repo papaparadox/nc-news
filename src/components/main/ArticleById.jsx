@@ -98,7 +98,7 @@ export default function ArticleById() {
       <button onClick={handleVote}>Vote</button>
       <button onClick={handleDownVote}>DownVote</button>
       {successVote && <p>{successVote}</p>}
-      {error && <p id='vote-error'>{error}</p>}
+      {error && <p id='error-message'>{error}</p>}
       <p>
         Post made by <span id='author'>{articleWithID.author}</span>
       </p>
