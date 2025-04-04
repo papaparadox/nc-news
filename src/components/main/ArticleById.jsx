@@ -95,8 +95,12 @@ export default function ArticleById() {
       <img src={articleWithID.article_img_url} id='article-id-image' />
       <article>{articleWithID.body}</article>
       <p>Votes: {articleWithID.votes + currentArticleVotes}</p>
-      <button onClick={handleVote}>Vote</button>
-      <button onClick={handleDownVote}>DownVote</button>
+      <button onClick={handleVote} className='vote-button'>
+        Vote
+      </button>
+      <button onClick={handleDownVote} className='vote-button'>
+        DownVote
+      </button>
       {successVote && <p>{successVote}</p>}
       {error && <p id='error-message'>{error}</p>}
       <p>

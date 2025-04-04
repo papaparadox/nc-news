@@ -97,8 +97,12 @@ export default function CommentCard({ comment, comments, setComments }) {
       <p>{comment.body}</p>
       <p>Posted on: {date.toLocaleString()}</p>
       <p>Votes: {comment.votes + currentVotes}</p>
-      <button onClick={handleVote}>Vote</button>
-      <button onClick={handleDownVote}>DownVote</button>
+      <button onClick={handleVote} className='vote-button'>
+        Vote
+      </button>
+      <button onClick={handleDownVote} className='vote-button'>
+        DownVote
+      </button>
       {comment.author === "grumpy19" ? (
         <>
           <button onClick={handleDelete} disabled={isDeleteClicked}>

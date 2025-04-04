@@ -48,8 +48,10 @@ export default function ListOfComments({ article_id }) {
 
   return (
     <section className='comment-section'>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='body-text'>Write your comment:</label>
+      <form onSubmit={handleSubmit} className='post-comment-form'>
+        <label htmlFor='body-text' id='post-comment-title'>
+          Write your comment:
+        </label>
         <textarea
           value={messageBody}
           onChange={handleChange}
