@@ -16,9 +16,15 @@
 .articles {
   padding: 15px;
   border: 3px solid;
-  background-color: antiquewhite;
+  color: white;
+  background-color: #333333;
   height: 100%;
   max-height: 160px;
+  font-family: arial;
+}
+
+.articles:hover {
+  background-color: grey;
 }
 
 a {
@@ -42,6 +48,7 @@ h3 {
 .header-nav {
   width: auto;
   background-color: #333333;
+  font-family: arial;
 }
 
 #author {
@@ -108,7 +115,19 @@ textarea {
 
 .topic-card {
   border: 3px solid;
-  background-color: antiquewhite;
+  color: white;
+  background-color: #333333;
+  border-radius: 30px;
+  font-family: arial;
+}
+
+.topic-card:hover {
+  background-color: grey;
+}
+
+#topic-heading {
+  color: white;
+  font-family: arial;
 }
 
 .list-of-topics {
