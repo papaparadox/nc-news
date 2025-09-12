@@ -5,7 +5,7 @@ export default function ArticleCard({ article }) {
   return (
     <Link to={toArticle}>
       <div className='articles'>
-        <h3>{article.title}</h3>
+        <p id='article-title'>{article.title}</p>
         <img src={article.article_img_url} id='article-card-image' />
       </div>
     </Link>

@@ -91,7 +91,7 @@ export default function ArticleById() {
   }
   return (
     <div>
-      <h1>{articleWithID.title}</h1>
+      <p id='article-title'>{articleWithID.title}</p>
       <img src={articleWithID.article_img_url} id='article-id-image' />
       <article>{articleWithID.body}</article>
       <p>Votes: {articleWithID.votes + currentArticleVotes}</p>

@@ -5,8 +5,8 @@ export default function TopicCard({ topic }) {
     <div className='topic-card'>
       <Link to={`/${topic.slug}/articles`}>
         <h1 id='topic-heading'>{topic.slug}</h1>
+      <p id='topic-description'>{topic.description}</p>
       </Link>
-      <p>{topic.description}</p>
     </div>
   );
 }
