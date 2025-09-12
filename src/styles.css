@@ -6,11 +6,18 @@
   text-align: center;
   overflow: hidden;
 }
+
+
+
 #article-card-image {
   margin-left: auto;
   margin-right: auto;
-  width: 100px;
+  width: 50px;
   height: auto;
+}
+
+#loading-screen {
+  text-align: center;
 }
 
 .articles {
@@ -43,6 +50,12 @@ h3 {
   height: auto;
   width: auto;
   max-width: 628px;
+}
+
+#article-title {
+  font-family: arial;
+  font-size: 25px;
+  text-align: center;;
 }
 
 .header-nav {
@@ -128,6 +141,10 @@ textarea {
 #topic-heading {
   color: white;
   font-family: arial;
+}
+
+#topic-description {
+  color: white;
 }
 
 .list-of-topics {
