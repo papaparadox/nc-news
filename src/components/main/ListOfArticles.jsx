@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { useSearchParams } from "react-router";
 import ArticleCard from "./ArticleCard";
 import { getArticles, getArticlesByTopic } from "../api";
+import { SpinnerCircular } from "spinners-react";
 
 export default function ListOfArticles() {
   const [articles, SetArticles] = useState([]);
@@ -48,8 +49,14 @@ export default function ListOfArticles() {
     setSearchParams({ sort_by: sortBy, order: newOrder });
   }
 
-  if(isLoading) {//Add a spinner - TODO
-    return <div id='loading-screen'><h1>Loading...Might take up to 1 minute !</h1></div>
+  if(isLoading) {
+    // return <div id='loading-screen'><h1>Loading...Might take up to 1 minute !</h1></div>
+     return (
+      <div className='spinner-container'>
+        <SpinnerCircular size={125} color="#3498db" enabled={true} />
+        <p id='spinner-text'>Loading a free database...</p>
+      </div>
+    );
   }
 
   if (pathError) {
