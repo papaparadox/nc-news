@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getTopics } from "../api";
 import TopicCard from "./TopicCard";
 import ErrorComponent from "./ErrorComponent";
+import { SpinnerCircular } from "spinners-react";
 
 export default function ListOfTopics() {
   const [topics, setTopics] = useState([]);
@@ -23,7 +24,12 @@ export default function ListOfTopics() {
     return <ErrorComponent message={pathError.message} />;
   }
   if(isLoading) {
-    return <div id='loading-screen'><h1>Loading...Might take up to 1 minute !</h1></div>
+         return (
+          <div className='spinner-container'>
+            <SpinnerCircular size={125} color="#3498db" enabled={true} />
+            <p id='spinner-text'>Loading a free database...</p>
+          </div>
+        );
   }
 
   return (
